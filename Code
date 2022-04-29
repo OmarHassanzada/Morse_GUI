@@ -1,0 +1,178 @@
+from tkinter import *
+import tkinter.font
+from gpiozero import LED
+import RPi.GPIO
+import time
+RPi.GPIO.setmode(RPi.GPIO.BCM)
+
+#using led with pin 27
+LED = LED(27)
+
+##the GUI
+Screen = Tk() ##Create a new Screen
+
+Screen.title("Morse Code Translater")##title
+
+Font = tkinter.font.Font(family = 'Arial', size = 16, weight = "bold")##creating universal font
+
+## MORSECODE REPRESENTATION FOR EVERY LETTER
+def MorseCodeTranslater(userInput):
+    for letter in userInput:
+        
+        if (letter.lower()=='a'):
+            Dot()
+            Dash()
+        
+        elif (letter.lower()=='b'):
+            Dash()
+            Dot()
+            Dot()
+            Dot()
+        
+        elif (letter.lower()=='c'):
+            Dash()
+            Dot()
+            Dash()
+            Dot()
+        
+        elif (letter.lower()=='d'):
+            Dash()
+            Dot()
+            Dot()
+        
+        elif (letter.lower()=='e'):
+            Dot()
+        
+        elif (letter.lower()=='f'):
+            Dot()
+            Dot()
+            Dash()
+            Dot()
+        
+        elif (letter.lower()=='g'):
+            Dash()
+            Dash()
+            Dot()
+        
+        elif (letter.lower()=='h'):
+            Dot()
+            Dot()
+            Dot()
+            Dot()
+        
+        elif (letter.lower()=='i'):
+            Dot()
+            Dot()
+        
+        elif (letter.lower()=='j'):
+            Dot()
+            Dash()
+            Dash()
+            Dash()
+        
+        elif (letter.lower()=='k'):
+            Dash()
+            Dot()
+            Dash()
+        
+        elif (letter.lower()=='l'):
+            Dot()
+            Dash()
+            Dot()
+            Dot()
+        
+        elif (letter.lower()=='m'):
+            Dash()
+            Dash()
+        
+        elif (letter.lower()=='n'):
+            Dash()
+            Dot()
+        
+        elif (letter.lower()=='o'):
+            Dash()
+            Dash()
+            Dash()
+        
+        elif (letter.lower()=='p'):
+            Dot()
+            Dash()
+            Dash()
+            Dot()
+        
+        elif (letter.lower()=='q'):
+            Dash()
+            Dash()
+            Dot()
+            Dash()
+        
+        elif (letter.lower()=='r'):
+            Dot()
+            Dash()
+            Dot()
+        
+        elif (letter.lower()=='t'):
+            Dash()
+        
+        elif (letter.lower()=='u'):
+            Dot()
+            Dot()
+            Dash()
+        
+        elif (letter.lower()=='v'):
+            Dot()
+            Dot()
+            Dot()
+            Dash()
+        
+        elif (letter.lower()=='w'):
+            Dot()
+            Dash()
+            Dash()
+        
+        elif (letter.lower()=='x'):
+            Dash()
+            Dot()
+            Dot()
+            Dash()
+        
+        elif (letter.lower()=='y'):
+            Dash()
+            Dot()
+            Dash()
+            Dash()
+        
+        elif (letter.lower()=='z'):
+            Dash()
+            Dash()
+            Dot()
+            Dot()
+            
+
+## This method turns LED on for 1 second
+def Dot():
+    LED.on()
+    time.sleep(1)
+    LED.off()
+    time.sleep(1)
+
+
+## This method turns LED on for 4 seconds
+def Dash():
+    LED.on()
+    time.sleep(4)
+    LED.off()
+    time.sleep(1)
+    
+def UserEnter():
+    userInput = Text_Box.get("1.0","end-1c")
+    MorseCodeTranslater(userInput)
+        
+## CREATE WIDGETS
+Text_Box = Text(Screen, height=6, width=40, bg="white")
+Text_Box.grid(row=0,column=1, padx=20, pady=20)
+
+Enter = Button(Screen, text='ENTER', font=Font, command=UserEnter, bg='white', height=2, width=30)
+Enter.grid(row=1,column=1)
+    
+Screen.mainloop();
